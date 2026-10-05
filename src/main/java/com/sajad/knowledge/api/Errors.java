@@ -14,6 +14,10 @@ public class Errors extends ResponseEntityExceptionHandler {
         p.setProperty("code", e.code());
         return p;
     }
+    @ExceptionHandler(org.springframework.web.multipart.MultipartException.class)
+    ProblemDetail multipart(org.springframework.web.multipart.MultipartException e) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Send a multipart upload with a file field.");
+    }
     @ExceptionHandler(IllegalArgumentException.class)
     ProblemDetail invalid(IllegalArgumentException e) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Invalid request value. Check the question and document identifier.");
