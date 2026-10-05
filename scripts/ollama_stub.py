@@ -5,8 +5,22 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200); self.end_headers(); self.wfile.write(b"test-only")
+    def read_body(self):
+        # JDK's streaming HTTP client sends JSON with chunked transfer encoding.
+        if 'chunked' in self.headers.get('Transfer-Encoding', '').lower():
+            chunks = []
+            while True:
+                size = int(self.rfile.readline().split(b';', 1)[0].strip(), 16)
+                if size == 0:
+                    while self.rfile.readline().strip():
+                        pass
+                    break
+                chunks.append(self.rfile.read(size))
+                self.rfile.read(2)  # trailing CRLF
+            return b''.join(chunks)
+        return self.rfile.read(int(self.headers.get('Content-Length', 0)))
     def do_POST(self):
-        data = json.loads(self.rfile.read(int(self.headers.get('Content-Length', 0))))
+        data = json.loads(self.read_body())
         if self.path == '/api/embed':
             inputs = data.get('input', [])
             if isinstance(inputs, str): inputs = [inputs]
