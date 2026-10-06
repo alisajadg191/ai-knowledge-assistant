@@ -6,7 +6,7 @@ A local document Q&A portfolio application by **Sajad Ali**, using **Java 21, Sp
 
 Upload documents, retrieve relevant passages with embeddings, and ask a local model to answer using those passages. Inspect clickable citations, page numbers for PDFs, and the original excerpts behind an answer.
 
-**Start with the [project requirements and walkthrough](docs/PROJECT_REQUIREMENTS.md)** if RAG, embeddings or vector databases are new to you.
+**New to this project? Start with [What, Why and How](docs/WHAT_WHY_HOW.md)** for a beginner-friendly explanation of the requirements, technology choices, upload and question flows, and testing. Then read the [formal project requirements and acceptance criteria](docs/PROJECT_REQUIREMENTS.md).
 
 ## Features
 
@@ -179,6 +179,7 @@ The default Java run skips real-database integration tests. See [testing and eva
 
 ## Documentation
 
+- [What, Why and How — beginner's project guide](docs/WHAT_WHY_HOW.md)
 - [Project requirements and walkthrough](docs/PROJECT_REQUIREMENTS.md)
 - [Architecture and RAG flow](docs/ARCHITECTURE.md)
 - [API and error reference](docs/API.md)
