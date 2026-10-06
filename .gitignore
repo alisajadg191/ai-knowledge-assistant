@@ -46,3 +46,7 @@ frontend/playwright-report/
 src/main/resources/static/
 # Local model/runtime data
 *.log
+
+# Python test fixture cache
+__pycache__/
+*.pyc

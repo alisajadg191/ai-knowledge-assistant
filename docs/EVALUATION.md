@@ -1,18 +1,18 @@
 # Testing and evaluation
 
-## Verified in the build workspace — 5 October 2026
+## Verified locally and in GitHub Actions — checked 6 October 2026
 
 | Check | Result |
 |---|---|
 | Java 21 Maven clean verify and executable JAR packaging | Passed |
 | Unit and Spring AI HTTP protocol tests | 19 passed, zero failures |
-| Real PostgreSQL/pgvector integration tests | 5 implemented; skipped locally because this workspace has no usable PostgreSQL/Docker runtime |
+| Real PostgreSQL/pgvector integration tests | 5 passed in GitHub Actions against real PostgreSQL/pgvector; 24 Java tests passed in total |
 | React production build | Passed |
-| Desktop/mobile browser tests | 4 implemented; require the disposable database and browser runtime; not yet verified |
+| Desktop/mobile browser tests | 4 passed in GitHub Actions (desktop and mobile) |
 | Live Ollama embedding/retrieval/answer quality | Not evaluated here |
-| GitHub Actions | Workflow supplied; publication and first CI run pending repository creation |
+| GitHub Actions | Passed: build, 24 Java tests, and 4 browser tests |
 
-Do not read implemented tests as passing tests. Update this document with actual CI results once the repository is published.
+[Successful workflow run](https://github.com/alisajadg191/ai-knowledge-assistant/actions/runs/37363013326) verified application commit `c0d9576`. The initial runs caught malformed multipart error handling and missing chunked-transfer support in the test-only model server; both were corrected before this successful run. Live model quality remains a separate evaluation below.
 
 The Java protocol tests exercise actual Spring AI serialization and HTTP clients against a controlled Ollama-compatible stub. The stub returns fixed vectors/answers and is **not inference**. Unit tests cover PDF page extraction, empty/scanned/unsupported text, chunk limits, duplicate handling, ingestion failure, retrieval branches, citation validation, model admission and timeouts.
 

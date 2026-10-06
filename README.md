@@ -1,5 +1,7 @@
 # AI Knowledge Assistant · Knowledge Desk
 
+[![Build and test](https://github.com/alisajadg191/ai-knowledge-assistant/actions/workflows/ci.yml/badge.svg)](https://github.com/alisajadg191/ai-knowledge-assistant/actions/workflows/ci.yml)
+
 A local document Q&A portfolio application by **Sajad Ali**, using **Java 21, Spring Boot, Spring AI, React, Ollama and PostgreSQL with pgvector**.
 
 Upload documents, retrieve relevant passages with embeddings, and ask a local model to answer using those passages. Inspect clickable citations, page numbers for PDFs, and the original excerpts behind an answer.
